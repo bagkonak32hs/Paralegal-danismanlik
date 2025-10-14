@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HİZMETLERİMİZ</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Genel Ayarlar */
+        /* Genel Ayarlar */
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fdfdfd;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #002244;
+  padding: 5px 5px;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.navbar .logo img {
+  max-width: 50px;
+  height: 50px;  
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.navbar .logo img:hover {
+    transform: translateY(-5px) scale(1.1); /* Yukarı kayma + büyüme */
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3)); /* Hafif gölge */
+}
+.nav-links {  
+ display: flex;
+  list-style: none;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 15px;
+  align-items: flex-end; /* Menüyü alta yaklaştırır */
+  
+}
+.nav-links a {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 0px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff4b2b;
+}
+
+/* Tıklanan aktif menü */
+.nav-links a.active {
+  color: #ff4b2b; 
+  font-weight: bold;
+  border-bottom: 2px solid #ff4b2b;
+}
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  
+  
+}
+.nav-links li a:hover {
+  color: #ffcc00;
+}
+.nav-links a::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #ffffff;
+  transition: width 0.3s;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+/* Hamburger ikonu */
+.menu-toggle {
+  width: 100%;
+  display: none;
+  flex-direction: column;  
+  cursor: pointer;  
+  gap: 5px;
+  margin-left: 10%;
+}
+.menu-toggle span {  
+      width: 35px;
+      height: 4px;
+      background: #ffffff;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px)  {
+  
+  /* Navbar mobilde: logo solda, hamburger sağda */
+  .navbar {
+    justify-content: space-between; /* değişiklik burası */
+    padding: 10px 20px;
+    
+    
+  }
+
+  /* Menü linkleri */
+  .nav-links {
+    position: absolute;
+  top: 60px; /* navbar yüksekliği kadar aşağı */
+  right: 0;   /* sağdan başla */
+  background-color: #002244;
+  color: white;
+  width: 200px; 
+  display: none; /* hamburger tıklayınca gösterilecek */
+  flex-direction: column;
+  }
+  
+
+  /* Menü açıkken */
+  .nav-links.active {
+    display: flex;
+    
+  }
+  .nav-links li {
+    list-style: none;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 15px;
+    color: #fafafa;
+    text-decoration: none;
+  }
+  .nav-links.show {
+    display: block; /* menü açıldığında görünür */
+    right: 0; /* açılınca ekrana gelir */
+}
+
+  /* Hamburger menü görünür olacak */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 10000;
+  }
+
+  /* Hamburger animasyonu X */
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+/* Hero */
+.hero {
+  background-image: url('images/roma.png');
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  height: 70vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  animation: fadeInDown 1s ease forwards;
+}
+.hero-content h3, .hero-content p {
+  font-size: 1.3rem;
+  animation: fadeInUp 1.2s ease forwards;
+}
+.btn {
+  display: inline-block;
+  padding: 15px 45px;
+  background: #ffcc00;
+  color: #002244;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: transform 0.3s, background 0.3s;
+  margin-top: 15px;
+}
+.btn:hover {
+  transform: scale(1.1);
+  background: #0a16ff;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {opacity: 0; transform: translateY(-30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* About */
+.about {
+  background-color: #ffffff;
+  padding: 60px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color: #000;
+  line-height: 1.8;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  position: relative;
+}
+.about h2::after {
+  content: '';
+  display: block;
+  width: 150px;
+  height: 4px;
+  background-color: #0077b6;
+  margin: 1px auto 0;
+  border-radius: 2px;
+}
+.about p {
+  font-size: 18px;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+.about img {
+  width: 60%;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1s ease;
+}
+.about img.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Services */
+.services, .services1, .references {
+  padding: 80px 20px;
+  text-align: center;
+}
+.service-cards, .service-cards1, .ref-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.card, .card, .ref-card {   
+  background: #002244;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  color: yellow; /* 👈 yazı rengi hover öncesinde sarı */
+}
+.card:hover, .card:hover, .ref-card:hover {
+  background-color: #ffcc00;
+  color: #002244; /* 👈 yazı rengi hover sonrası mavi */
+  transform: translateY(-10px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.ref-card h4 {
+  margin-top: 15px;
+  color: #03498f;
+}
+.ref-logo {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 2px solid #002244;
+}
+
+/* Feature Box */
+.feature-box, .feature-box1 {
+  display: flex;
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-left: 6px solid #0077b6;
+  padding: 30px;
+  margin: 40px 0;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.feature-box:hover, .feature-box1:hover {
+  background: #ffcc00;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 119, 182, 0.2);
+  border-left-color: #023e8a;
+}
+.feature-text, .feature-text1 {
+  flex: 1;
+  padding-right: 30px;
+}
+.feature-text h3, .feature-text1 h3 {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.feature-text p, .feature-text1 p {
+  font-size: 17px;
+  color: #333;
+  line-height: 1.7;
+  text-align: justify;
+}
+.feature-image, .feature-image1 {
+  flex: 0 0 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.feature-image img, .feature-image1 img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+.feature-image img:hover, .feature-image1 img:hover {
+  transform: scale(1.05);
+  border: 3px solid #0077b6;
+}
+
+/* Responsive Feature Box */
+@media (max-width: 768px) {
+  .feature-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .feature-text {
+    padding-right: 0;
+  }
+  .feature-image {
+    margin-top: 20px;
+  }
+  .feature-image img {
+    max-width: 90%;
+  }
+}
+
+/* About Alt Kutucuklar */
+.about-features {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.about-box {
+  flex: 1 1 220px;
+  background-color: #002244;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.about-box h4 {
+  margin-bottom: 10px;
+  color: yellow;
+  font-size: 18px;
+}
+.about-box p {
+  font-size: 15px;
+  color: yellow;
+  line-height: 1.5;
+}
+.about-box:hover {
+  background: #ffcc00;  
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,119,182,0.2);
+}
+.about-box:hover h4, .about-box:hover p {
+  color: #002244;
+}
+
+@media (max-width: 768px) {
+  .about-features {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-box {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+/* Contact */
+.contact {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f7f7f7;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+form input, form textarea, form button {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+form button {
+  background: #002244;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+form button:hover {
+  background: #001122;
+}
+
+/* Contact Info */
+.contact-info {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.info-box {
+  display: inline-block;
+  padding: 15px 25px;
+  background: #002244;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.info-box:hover {
+  background: #ffcc00;
+  color: #002244;
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Footer */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.references {
+  flex: 1;
+}
+.site-footer {
+  background: #002244;
+  color: #ffffff;
+  text-align: center;
+  padding: 1px;
+  margin-top: auto;
+}
+
+.hizmeth1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 30px;
+
+  /* şık detaylar */
+  letter-spacing: 2px; /* harf arası boşluk */
+  text-transform: uppercase; /* büyük harf */
+  background: linear-gradient(90deg, #050505, #148ba3, #010101);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.hizmeth1::after {
+  content: "";
+  display: block;
+  width: 350px;
+  height: 2px;
+  background: #c6b713;
+  margin: 12px auto 0;
+  border-radius: 2px; /* çizgi köşeleri de yumuşak */
+}
+@media (max-width: 768px) {
+  .hizmeth1 { 
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hizmeth1 {
+    font-size: 30px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hizmeth1 {
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+</style>
+    
+</head>
+<body>
+
+    <header>
+    
+      <nav class="navbar">
+        <div class="logo">
+         <img src="images/2.png" alt="Logo">
+       </div>
+
+       
+       
+
+       <ul class="nav-links" id="nav-links">
+         <li><a href="index.html">ANA SAYFA</a></li>
+         <li><a href="/index.html#about">HAKKIMIZDA</a></li>
+         <li><a href="hizmetlerimiz.html">HİZMETLERİMİZ</a></li>
+          <li><a href="referanslar.html">REFERANSLAR</a></li>
+         <li><a href="index.html#contact">İLETİŞİM</a></li>
+       </ul>
+
+       <div class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+       </div>
+
+      </nav>
+  </header>
+
+  <br>
+
+    <section id="services" class="services">
+        <h1 class="hizmeth1">HİZMETLERİMİZ</h1> <br>
+     <div class="service-cards">           
+       <div class="card">📑 İcra Sözleşme Danışmanlığı</div>
+       <div class="card">📄 İcra dosya süreç takibi</div>
+       <div class="card">🖋  Dilekçe Hazırlığı</div>
+       <div class="card">⚖  Genel Danışmanlık</div>
+       <div class="card">📊 Dosya ve Operasyon Yönetimi</div>
+       <div class="card">💼 Hukuk Bürosu Destek Hizmetleri</div>
+       <div class="card">📑 Raporlama ve Analiz</div>
+     </div>
+  </section>
+
+    <section id="about" class="about">
+        <div class="feature-box">
+       <div class="feature-text">
+        <h1>“İcra Takibinde Güvenilir Partneriniz.”</h1>
+         <h3>İcra Takip Süreçlerinde Güvenilir ve Sistematik Destek</h3>
+         <p>
+          Avukatlara özel profesyonel destek hizmetiyle, icra dosyalarının açılışından UYAP üzerinden takibine kadar tüm süreçleri sizin adınıza yönetiyoruz.<br>
+          Paralegal Danışmanlık olarak, hukuk bürolarının operasyonel yükünü hafifletiyor; zaman, maliyet ve iş gücü açısından maksimum verimlilik sağlıyoruz.
+         </p>        
+       </div>
+       <div class="feature-image">
+         <img src="images/pi.png" alt="İcra Takip Görseli">
+       </div>     
+     </div>
+
+     <div class="feature-box">
+       <div class="feature-text">
+        <h1>“UYAP sistemine hâkim, süreç yönetiminde uzman, sonuç odaklı hizmet anlayışı.”</h1>
+         <h3>Her dosya, her işlem ve her süre bizim için önceliklidir.</h3>
+         <p>         
+          Avukatların hukuki uzmanlıklarına tam anlamıyla odaklanabilmeleri için operasyonel ve teknik süreçleri güvenle devralıyoruz.<br>
+           Dosya açılışından dijital takibe, evrak yönetiminden süre kontrolüne kadar tüm adımları sistematik biçimde yönetiyor; iş yükünü hafifletiyor, zaman ve kaynak verimliliğini en üst düzeye çıkarıyoruz. <br>
+           Paralegal Danışmanlık olarak, her detayda titizlikle ilerliyor ve hukuk bürolarının profesyonel başarısına katkı sunuyoruz.
+
+         </p>        
+       </div>
+       <div class="feature-image">
+         <img src="images/rado.png" alt="İcra Takip Görseli">
+       </div>     
+     </div>
+
+     <!-- About Alt Kutucuklar -->
+      <div class="about-features">
+     <div class="about-box">
+      <h4>İcra Dosyalarının Açılışı</h4>
+    <p>İlâmlı, ilâmsız, rehin ve ipotek takiplerinin UYAP sistemi üzerinden eksiksiz ve doğru şekilde açılması
+      Gerekli evrakların hazırlanması, taranması ve sisteme yüklenmesi
+      Tebligat adreslerinin kontrolü ve güncellenmesi</p>
+  </div>
+  <div class="about-box">
+    <h4>UYAP Üzerinden Dosya Takibi</h4>
+    <p>Mevcut icra dosyalarının günlük, haftalık veya aylık periyotlarla sistematik takibi
+       Sürelerin kontrolü, işlem aşamalarının izlenmesi ve gecikmelerin önlenmesi
+       Avukata düzenli raporlama ve dosya durumu hakkında bilgilendirme.</p>
+  </div>
+  <div class="about-box">
+    <h4>Resmî Yazışmalar ve Evrak Hazırlığı</h4>
+    <p>İcra müdürlükleriyle yazışmaların yürütülmesi
+       Talep dilekçeleri, satış istemleri, haciz talepleri gibi belgelerin hazırlanması
+       Evrakların UYAP’a uygun formatta düzenlenmesi.</p>
+  </div>
+  <div class="about-box">
+    <h4>Haciz ve Satış Süreçlerinin Takibi</h4>
+    <p>Haciz işlemlerinin planlanması ve takibi
+       Menkul ve gayrimenkul satış taleplerinin hazırlanması
+       Satış ilanlarının kontrolü ve sürecin koordinasyonu.</p>
+  </div>
+  <div class="about-box">
+    <h4>Danışmanlık ve Süreç Yönetimi</h4>
+    <p>Avukatlara özel süreç planlaması ve operasyonel danışmanlık
+       Dosya yoğunluğu olan hukuk büroları için dış kaynaklı takip hizmeti
+       İcra takibinde sık yapılan hataların önlenmesine yönelik teknik destek.</p>
+  </div>
+     </div>
+
+
+
+
+    </section>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Footer -->
+  <footer id="footer" class="site-footer">
+  <p>
+    © 2025 <a href="https://www.greendevcode.com/" style="color: white;" target="_blank" rel="noopener noreferrer">GREENDEVCODE</a> | Tüm Hakları Saklıdır.
+  </p>
+</footer>
+
+
+
+
+
+  <script src="script.js"></script>
+    
+</body>
+</html>
