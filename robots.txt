@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /.history/
+Disallow: /.claude/
+
+Sitemap: https://paralegaldanismanlik.com/sitemap.xml
