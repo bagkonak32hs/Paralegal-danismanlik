@@ -88,6 +88,96 @@
           </p>
         </div>
       </div>
+
+      <!-- Decorative animated artwork (right side) -->
+      <div class="banner-art" data-hero-reveal data-delay="200" aria-hidden="true">
+        <div class="banner-art__stage">
+
+          <div class="banner-art__aura"></div>
+
+          <svg class="banner-art__rings" viewBox="0 0 400 400" fill="none">
+            <circle class="ring ring--a" cx="200" cy="200" r="188" />
+            <circle class="ring ring--b" cx="200" cy="200" r="148" />
+            <circle class="ring ring--c" cx="200" cy="200" r="108" />
+            <g class="orbit orbit--a"><circle cx="388" cy="200" r="4" /></g>
+            <g class="orbit orbit--b"><circle cx="52" cy="200" r="3" /></g>
+            <g class="stars">
+              <circle cx="46" cy="96" r="1.4" /><circle cx="118" cy="38" r="1" /><circle cx="270" cy="22" r="1.3" />
+              <circle cx="372" cy="128" r="1.1" /><circle cx="392" cy="286" r="1.4" /><circle cx="336" cy="388" r="1" />
+              <circle cx="168" cy="382" r="1.3" /><circle cx="64" cy="318" r="1.1" /><circle cx="22" cy="214" r="1" />
+              <circle cx="214" cy="60" r="1" /><circle cx="300" cy="308" r="1.2" /><circle cx="96" cy="152" r="1" />
+            </g>
+          </svg>
+
+          <svg class="banner-art__links" viewBox="0 0 400 400" fill="none">
+            <path class="link link--a" d="M222 129C228 108 236 88 242 70" />
+            <path class="link link--b" d="M125 205C106 207 82 208 62 208" />
+            <path class="link link--c" d="M228 270C238 295 248 322 258 342" />
+            <circle class="node" cx="242" cy="70" r="2.6" />
+            <circle class="node" cx="62" cy="208" r="2.6" />
+            <circle class="node" cx="258" cy="342" r="2.6" />
+            <circle class="pulse" r="2.4"><animateMotion dur="3.4s" repeatCount="indefinite" begin="2.2s" path="M222 129C228 108 236 88 242 70" /></circle>
+            <circle class="pulse" r="2.4"><animateMotion dur="3.1s" repeatCount="indefinite" begin="2.9s" path="M125 205C106 207 82 208 62 208" /></circle>
+            <circle class="pulse" r="2.4"><animateMotion dur="3.7s" repeatCount="indefinite" begin="3.4s" path="M228 270C238 295 248 322 258 342" /></circle>
+          </svg>
+
+          <div class="banner-art__halo"></div>
+
+          <svg class="banner-art__sphere" viewBox="0 0 200 200" fill="none">
+            <defs>
+              <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fff6c2" stop-opacity="0.95" />
+                <stop offset="28%" stop-color="#ffcc00" stop-opacity="0.55" />
+                <stop offset="100%" stop-color="#ffcc00" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <circle class="sphere__glow" cx="100" cy="100" r="62" fill="url(#orbGlow)" />
+            <circle class="sphere__shell" cx="100" cy="100" r="54" />
+            <g class="sphere__lat">
+              <ellipse cx="100" cy="100" rx="54" ry="13" />
+              <ellipse cx="100" cy="76" rx="48.5" ry="11.5" />
+              <ellipse cx="100" cy="124" rx="48.5" ry="11.5" />
+              <ellipse cx="100" cy="58" rx="32" ry="7.5" />
+              <ellipse cx="100" cy="142" rx="32" ry="7.5" />
+            </g>
+            <g class="sphere__mer">
+              <ellipse class="mer mer--1" cx="100" cy="100" rx="54" ry="54" />
+              <ellipse class="mer mer--2" cx="100" cy="100" rx="54" ry="54" />
+              <ellipse class="mer mer--3" cx="100" cy="100" rx="54" ry="54" />
+              <ellipse class="mer mer--4" cx="100" cy="100" rx="54" ry="54" />
+            </g>
+            <circle class="sphere__core" cx="100" cy="100" r="3.2" />
+          </svg>
+
+          <div class="banner-art__card banner-art__card--a">
+            <span class="bcard__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+            </span>
+            <span class="bcard__text">
+              <strong>İcra Takibi</strong>
+              <small>Dosya süreci</small>
+              <span class="bcard__bar"><i></i></span>
+            </span>
+          </div>
+
+          <div class="banner-art__card banner-art__card--b">
+            <span class="bcard__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
+            </span>
+            <span class="bcard__text">
+              <strong>Haciz İşlemleri</strong>
+              <small>Tespit ve takip</small>
+              <span class="bcard__checks"><i></i><i></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="banner-art__card banner-art__card--c">
+            <span class="bcard__dot"></span>
+            <span class="bcard__text"><strong>Tahsilat</strong><small>Süreç yönetimi</small></span>
+          </div>
+
+        </div>
+      </div>
     </section>
 
 
@@ -315,7 +405,7 @@
             Dosyanızı Birlikte Değerlendirelim
           </h2>
           <p class="section__subtitle section__subtitle--light">
-            20 yıllık tecrübemizle dosyanızı analiz ediyor, size en uygun çözüm yolunu sunuyoruz.
+            15 yıllık tecrübemizle dosyanızı analiz ediyor, size en uygun çözüm yolunu sunuyoruz.
             İlk görüşme ücretsizdir.
           </p>
           <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">

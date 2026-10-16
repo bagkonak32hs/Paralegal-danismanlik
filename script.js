@@ -154,7 +154,7 @@
     if (!hero) return;
 
     /* Image paths (SLD4 & SLD5 are used in content sections) */
-    const bases   = ['/images/SLD1', '/images/SLD2', '/images/SLD3', '/images/SLD6', '/images/SLD7'];
+    const bases   = ['images/SLD1', 'images/SLD2', 'images/SLD3', 'images/SLD6', 'images/SLD7'];
     const toSrc   = b => `${b}.png`;
     const FADE_MS = 800;
     const TICK_MS = 4000;
@@ -181,6 +181,9 @@
     const imgA   = qs('img', A);
     const imgB   = qs('img', B);
 
+    /* Preload every slide so crossfades never wait on the network */
+    bases.forEach(base => { const pre = new Image(); pre.src = toSrc(base); });
+
     /* Load first image */
     imgA.src = toSrc(bases[0]);
     A.classList.add('show');
@@ -198,18 +201,27 @@
       const underLayer= topIsA ? B : A;
       const underImg  = qs('img', underLayer);
 
+      const crossfade = () => {
+        /* Trigger reflow, then crossfade */
+        void underLayer.offsetWidth;
+        underLayer.classList.add('show');
+        topLayer.classList.remove('show');
+
+        setTimeout(() => {
+          topIsA = !topIsA;
+          idx    = next;
+          busy   = false;
+        }, FADE_MS);
+      };
+
+      /* Only fade once the next image is actually ready */
+      underImg.addEventListener('error', () => { busy = false; }, { once: true });
+      underImg.addEventListener('load', crossfade, { once: true });
       underImg.src = toSrc(bases[next]);
-
-      /* Trigger reflow, then crossfade */
-      void underLayer.offsetWidth;
-      underLayer.classList.add('show');
-      topLayer.classList.remove('show');
-
-      setTimeout(() => {
-        topIsA = !topIsA;
-        idx    = next;
-        busy   = false;
-      }, FADE_MS);
+      if (underImg.complete && underImg.naturalWidth > 0) {
+        underImg.removeEventListener('load', crossfade);
+        crossfade();
+      }
     }
 
     const nextSlide = () => showSlide(idx + 1);
@@ -219,12 +231,6 @@
     function stopTimer()  { if (timer) { clearInterval(timer); timer = null; } }
 
     startTimer();
-
-    /* Pause on hover (desktop) */
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      hero.addEventListener('mouseenter', stopTimer);
-      hero.addEventListener('mouseleave', startTimer);
-    }
 
     /* Pause when tab hidden */
     document.addEventListener('visibilitychange', () => {
@@ -424,6 +430,37 @@
     document.addEventListener('visibilitychange', run);
   })();
 
+
+
+  /* ============================================================
+     MODULE: BANNER ARTWORK PARALLAX (subtle, pointer devices only)
+     ============================================================ */
+  (function initBannerParallax() {
+    const art = qs('.banner-art, .banner-wave');
+    if (!art) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const banner = art.closest('.page-banner') || art.parentElement;
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+
+    function tick() {
+      cx += (tx - cx) * 0.08;
+      cy += (ty - cy) * 0.08;
+      art.style.setProperty('--px', cx.toFixed(3));
+      art.style.setProperty('--py', cy.toFixed(3));
+      raf = (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) ? requestAnimationFrame(tick) : null;
+    }
+    const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+
+    banner.addEventListener('mousemove', (e) => {
+      const r = banner.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+      ty = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+      kick();
+    }, { passive: true });
+    banner.addEventListener('mouseleave', () => { tx = 0; ty = 0; kick(); });
+  })();
 
   /* ============================================================
      MODULE: NAV LOGO FADE-IN
